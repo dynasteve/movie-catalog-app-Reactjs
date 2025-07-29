@@ -5,7 +5,7 @@ import '../css/Home.css'
 
 export default function Home() {
     const [searchQuery, setSearchQuery] = useState("");
-    const [movies, setMoives] = useState([]);
+    const [movies, setMovies] = useState([]);
     const [error, seterror] = useState(null);
     const [loading, setLoading] = useState(true);
 
@@ -13,7 +13,7 @@ export default function Home() {
         const loadPopularMovies = async () => {
             try {
                 const popularMovies = await getPopularMovies();
-                setMoives(popularMovies)
+                setMovies(popularMovies)
             } catch (err) {
                 console.log(err);
                 seterror("Failed to load Movies");
@@ -32,7 +32,7 @@ export default function Home() {
         setLoading(true)
         try {
             const searchResults = await searchMovies(searchQuery)
-            setMoives(searchResults)
+            setMovies(searchResults)
             seterror(null)
             
         } catch (err) {
