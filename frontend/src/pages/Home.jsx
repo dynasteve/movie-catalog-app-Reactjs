@@ -6,7 +6,7 @@ import '../css/Home.css'
 export default function Home() {
     const [searchQuery, setSearchQuery] = useState("");
     const [movies, setMovies] = useState([]);
-    const [error, seterror] = useState(null);
+    const [error, setError] = useState(null); // Fixed: was seterror
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -16,7 +16,7 @@ export default function Home() {
                 setMovies(popularMovies)
             } catch (err) {
                 console.log(err);
-                seterror("Failed to load Movies");
+                setError("Failed to load Movies"); // Fixed: was seterror
             } finally {
                 setLoading(false);
             };
@@ -33,11 +33,11 @@ export default function Home() {
         try {
             const searchResults = await searchMovies(searchQuery)
             setMovies(searchResults)
-            seterror(null)
+            setError(null) // Fixed: was seterror
             
         } catch (err) {
             console.log(err)
-            seterror("Failed to find movies...")
+            setError("Failed to find movies...") // Fixed: was seterror
         } finally {
             setLoading(false)
         }
